@@ -1,0 +1,31 @@
+#lang racket
+;;; Science Collection
+;;; logarithmic-histogram-example.rkt
+;;; Copyright (c) 2004-2011 M. Douglas Williams
+;;;
+;;; This file is part of the Science Collection.
+;;;
+;;; The Science Collection is free software: you can redistribute it and/or
+;;; modify it under the terms of the GNU Lesser General Public License as
+;;; published by the Free Software Foundation, either version 3 of the License
+;;; or (at your option) any later version.
+;;;
+;;; The Science Collection is distributed in the hope that it will be useful,
+;;; but WITHOUT WARRANTY; without even the implied warranty of MERCHANTABILITY
+;;; or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public
+;;; License for more details.
+;;;
+;;; You should have received a copy of the GNU Lesser General Public License
+;;; along with the Science Collection.  If not, see
+;;; <http://www.gnu.org/licenses/>.
+;;;
+;;; -------------------------------------------------------------------
+;;;
+
+(require (planet williams/science/random-distributions/logarithmic)
+         (planet williams/science/discrete-histogram-with-graphics))
+
+(let ((h (make-discrete-histogram)))
+  (for ((i (in-range 10000)))
+    (discrete-histogram-increment! h (random-logarithmic 0.5)))
+  (discrete-histogram-plot h "Histogram of the Logarithmic Distribution"))
